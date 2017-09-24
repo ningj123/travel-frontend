@@ -49,6 +49,8 @@ export class LoginComponent implements OnInit {
             this.loginForm.reset();
           }
         );
+    } else {
+      this.loginForm.reset();
     }
   }
 
