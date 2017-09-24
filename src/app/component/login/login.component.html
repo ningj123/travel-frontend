@@ -1,11 +1,11 @@
 <section class="logo text-center">
   <img src="../../../assets/logo.jpg" class="img-circle">
 </section>
-
 <section class="loginform container">
-  <div class="alert alert-dismissible alert-danger" id="alertTag" *ngIf="loginForm.invalid && isSubmit">
+  <div class="alert alert-dismissible alert-danger" id="alertTag" *ngIf="loginForm.invalid && isSubmit || postError">
     <button type="button" class="close" data-dismiss="alert">&times;</button>
-    <p *ngIf="loginForm.get('username').invalid">无效的手机号</p>
+    <p *ngIf="loginForm.get('username').invalid && loginForm.get('username').dirty">无效的手机号</p>
+    <p *ngIf="postError">手机号码或密码错误</p>
   </div>
   <form [formGroup]="loginForm" novalidate>
     <div class="form-group" id="usernameForm"

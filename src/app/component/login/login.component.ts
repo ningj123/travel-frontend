@@ -10,6 +10,7 @@ import {LoginService} from '../../service/login.service';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   isSubmit: boolean = false;
+  postError: boolean = false;
 
   constructor(private fb: FormBuilder, private loginService: LoginService) {
     this.loginForm = fb.group({
@@ -25,7 +26,8 @@ export class LoginComponent implements OnInit {
   }
 
   static userNameValidator(control: FormControl): ValidationErrors {
-    if (!control.value.match(/^[0-9]{11}$/)) {
+    const reg = /^[0-9]{11}$/;
+    if (!reg.test(control.value)) {
       return {'error': true};
     }
   }
@@ -43,6 +45,8 @@ export class LoginComponent implements OnInit {
             console.log(data);
           },
           err => {
+            this.postError = true;
+            this.loginForm.reset();
           }
         );
     }
