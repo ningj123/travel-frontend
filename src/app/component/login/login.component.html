@@ -1,0 +1,37 @@
+<section class="logo text-center">
+  <img src="../../../assets/logo.jpg" class="img-circle">
+</section>
+
+<section class="loginform container">
+  <div class="alert alert-dismissible alert-danger" id="alertTag" *ngIf="loginForm.invalid && isSubmit">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <p *ngIf="loginForm.get('username').invalid">无效的手机号</p>
+  </div>
+  <form [formGroup]="loginForm" novalidate>
+    <div class="form-group" id="usernameForm"
+         [class.has-error]="loginForm.get('username').invalid && loginForm.get('username').dirty">
+      <label for="inputUsername">手机号码</label>
+      <input type="text"
+             class="form-control"
+             id="inputUsername"
+             formControlName="username"
+      >
+    </div>
+    <div class="form-group" id="passwordForm"
+         [class.has-error]="loginForm.get('password').invalid && loginForm.get('password').dirty">
+      <label for="inputPassword">密码</label>
+      <input type="password"
+             class="form-control"
+             id="inputPassword"
+             name="password"
+             formControlName="password"
+      >
+    </div>
+    <div class="form-group">
+      <button class="btn btn-success btn-block" (click)="onSubmit()">登录</button>
+      <br>
+      <a class="text-danger pull-right">忘记密码？</a>
+      <a class="text-info pull-left">没有账号？立即注册</a>
+    </div>
+  </form>
+</section>
